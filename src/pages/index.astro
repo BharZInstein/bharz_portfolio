@@ -1,0 +1,273 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const projects = [
+  {
+    title: "Moosic AI – Mood-Based Music Recommendation",
+    description:
+      "A web app that recommends Spotify playlists based on your mood, powered by Gemini AI.",
+    tech: ["Next.js", "Flask", "Gemini API", "Spotify API"],
+    link: "https://github.com/BharZInstein/Moosic-AI",
+    details: [
+      "Used Gemini API to analyze user input and detect mood",
+      "Mapped moods to curated playlists via the Spotify API",
+      "Built a clean UI in Next.js and Flask for the backend"
+    ]
+  },
+  {
+    title: "CV Powered Motion Controller – Hands-Free Gaming",
+    description:
+      "A motion-controlled system that lets you play games using body gestures instead of a keyboard.",
+    tech: ["Python", "OpenCV", "MediaPipe"],
+    link: "https://github.com/BharZInstein/CV-Powered-Motion-Controller",
+    details: [
+      "Tracked real-time body motion and mapped gestures to inputs",
+      "Aimed at making games more accessible and immersive",
+      "Built using OpenCV and MediaPipe for fast pose detection"
+    ]
+  },
+  {
+    title: "Digisoul – Decentralized Financial Reputation System",
+    description:
+      "A DeFi protocol enabling under-collateralized lending using Soulbound Tokens and Zero-Knowledge Proofs.",
+    tech: ["Solidity", "Hardhat", "ZKPs", "SBTs"],
+    link: "https://devfolio.co/projects/digi-soul-a1e6",
+    details: [
+      "Verified user creditworthiness without exposing sensitive data",
+      "Leveraged ZKPs for privacy and SBTs for on-chain identity",
+      "Designed for fairer, more inclusive decentralized lending"
+    ]
+  },
+];
+
+const experience = [
+  {
+    period: "June 2024 – Present",
+    role: "Software Engineering Intern",
+    company: "OrangePeople",
+    companyUrl: "https://op.tech/",
+    details: [
+      "Built an AI-powered tool that converts natural language prompts into architecture diagrams (sequence/flow)",
+      "Designed REST APIs with FastAPI and integrated ML models for prompt interpretation and diagram generation",
+      "Collaborated remotely across teams, managing internal dashboards and project data pipelines"
+    ]
+  },
+  {
+    period: "May 2024 – Present",
+    role: "Technical Lead",
+    company: "CyberSecurity Student Community, VITC",
+    companyUrl: "https://www.linkedin.com/company/cyscomvit/posts/?feedView=all",
+    details: [
+      "Led a 200+ member community by organizing hands-on cybersecurity workshops and technical sessions",
+      "Mentored junior members and coordinated multiple technical events and CTFs"
+    ]
+  },
+  {
+    period: "Nov 2023 – Present",
+    role: "Technical Team Member",
+    company: "IEEE Computer Society, VITC",
+    companyUrl: "https://ieeecsvitc.com/",
+    details: [
+      "Developed CV-powered motion-controlled games for college tech events",
+      "Co-led HACKHUB, a flagship GitHub-sponsored hackathon with 350+ participants"
+    ]
+  },
+];
+---
+
+<Layout title="Bharghav Srinivasan - Full Stack Developer">
+    <div class="min-h-screen bg-black text-white w-full">
+      <!-- Main Layout -->
+      <div class="flex min-h-screen">
+        <!-- Left Content -->
+        <div class="flex-1 p-8 lg:p-16 max-w-2xl">
+          <!-- Header -->
+          <header class="mb-16">
+            <a href="#top" class="block mb-4 group">
+              <h1 class="text-4xl lg:text-5xl font-bold font-serif group-hover:text-amber-400 transition-colors">
+                Bharghav srinivasan
+              </h1>
+            </a>
+            <p class="text-gray-400 text-base font-mono">Engineer • Developer • Builder</p>
+          </header>
+
+          <!-- Navigation -->
+          <nav class="mb-16">
+            <div class="flex gap-8 text-lg">
+              <a href="#about" class="hover:text-amber-400 transition-colors border-b border-gray-600">
+                who am i
+              </a>
+              <a href="#projects" class="hover:text-amber-400 transition-colors">
+                projects
+              </a>
+              <a href="#experience" class="hover:text-amber-400 transition-colors">
+                experience
+              </a>
+            </div>
+          </nav>
+
+          <!-- About Section -->
+          <section id="about" class="mb-12 space-y-6">
+            <p class="text-lg text-gray-300 leading-relaxed">
+              I'm a pre-final year undergrad from VIT Chennai who enjoys building things — whether it's something dumb, something useful, or something I just wanted to see work.
+            </p>
+
+            <p class="text-lg text-gray-300 leading-relaxed">
+              What excites me most about tech is how you can start with just an idea and bring it to life using nothing but logic, math, and a bit of curiosity. I'm especially fascinated by machine learning — how deep learning lets machines learn patterns, make decisions, and in a way, "think" using layers of math.
+            </p>
+
+            <p class="text-lg text-gray-300 leading-relaxed">
+              Over the years, I've built up experience across full-stack development and machine learning — working with tools like TypeScript, Next.js, Python, Flask, and libraries like TensorFlow and OpenCV. I've even explored blockchain and zero-knowledge cryptography for some of my more experimental builds.
+            </p>
+
+            <p class="text-lg text-gray-300 leading-relaxed">
+              Outside of classes, I spend most of my time at hackathons, exploring new frameworks, or working with my college tech communities.
+            </p>
+          </section>
+
+          <!-- Contact Links -->
+          <div class="mb-12">
+            <p class="text-gray-400 mb-4">Let's talk —</p>
+            <div class="flex gap-6 text-amber-400">
+              <a href="mailto:bharghav7676@gmail.com" class="hover:text-white transition-colors">
+                Email
+              </a>
+              <a href="https://github.com/BharZInstein" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+                GitHub
+              </a>
+              <a href="https://www.linkedin.com/in/bharghav-srinivasan/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+                LinkedIn
+              </a>
+              <a href="https://x.com/bharzinstein76" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+                Twitter
+              </a>
+            </div>
+          </div>
+
+
+        </div>
+
+        <!-- Right Image -->
+        <div class="hidden lg:block flex-1 relative">
+          <div class="sticky top-0 h-screen flex items-center justify-center">
+            <img
+              src="/image.jpeg"
+              alt="Bharghav Srinivasan"
+              class="w-2/3 h-2/3 object-cover rounded-lg shadow-2xl"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Projects Section -->
+      <section id="projects" class="px-8 lg:px-16 py-20 max-w-6xl">
+        <h2 class="text-3xl lg:text-4xl font-bold font-serif mb-4">Projects</h2>
+        <p class="text-gray-400 mb-16 text-lg">Some cool things I've built recently</p>
+
+        <div class="space-y-12">
+          {projects.map((project) => (
+            <div
+              class="group border-b border-gray-800 pb-12 hover:border-gray-600 transition-colors cursor-pointer"
+            >
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-2xl font-semibold font-serif group-hover:text-amber-400 transition-colors">
+                  {project.title}
+                </h3>
+                <div class="flex items-center gap-4">
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-amber-400 transition-colors">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"
+                    >
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15,3 21,3 21,9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+
+              <p class="text-gray-300 leading-relaxed mb-4 font-serif">{project.description}</p>
+
+              <div class="mb-6">
+                {project.details.map((detail) => (
+                  <p class="text-gray-400 text-sm mb-2">– {detail}</p>
+                ))}
+              </div>
+
+              <div class="flex flex-wrap gap-3">
+                {project.tech.map((tech) => (
+                  <span class="text-xs text-gray-400 bg-gray-900 px-3 py-1 rounded-full">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Experience Section -->
+      <section id="experience" class="px-8 lg:px-16 py-20 max-w-6xl">
+        <h2 class="text-3xl lg:text-4xl font-bold font-serif mb-4">Experience</h2>
+        <p class="text-gray-400 mb-16 text-lg">My professional journey</p>
+
+        <div class="space-y-12">
+          {experience.map((job) => (
+            <div class="border-l-2 border-gray-800 pl-8 hover:border-amber-400 transition-colors">
+              <div class="flex justify-between items-start mb-2">
+                <div>
+                  <h3 class="text-xl font-semibold font-serif">{job.role}</h3>
+                  <a href={job.companyUrl} target="_blank" rel="noopener noreferrer" class="text-amber-400 font-medium hover:text-white transition-colors">
+                    {job.company}
+                  </a>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-gray-500 text-sm">{job.period}</span>
+                </div>
+              </div>
+              <div class="mb-4">
+                {job.details.map((detail) => (
+                  <p class="text-gray-400 text-sm mb-1">– {detail}</p>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="px-8 lg:px-16 py-12 border-t border-gray-800">
+        <div class="flex justify-between items-center max-w-6xl">
+          <p class="text-gray-500 text-sm">Made with ❤️ by Bharghav</p>
+          <div class="flex gap-6">
+            <a href="mailto:bharghav7676@gmail.com" class="text-gray-500 hover:text-white transition-colors">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </a>
+            <a href="https://github.com/BharZInstein" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition-colors">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/bharghav-srinivasan/" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition-colors">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </footer>
+    </div>
+</Layout> 
