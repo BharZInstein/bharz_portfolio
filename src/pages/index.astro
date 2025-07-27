@@ -78,9 +78,9 @@ const experience = [
 <Layout title="Bharghav Srinivasan - Full Stack Developer">
     <div class="min-h-screen bg-black text-white w-full">
       <!-- Main Layout -->
-      <div class="flex flex-col-reverse lg:flex-row min-h-screen">
+      <div class="flex flex-col lg:flex-row min-h-screen">
         <!-- Left Content -->
-        <div class="flex-1 p-8 lg:p-16 max-w-2xl">
+        <div class="flex-1 p-8 lg:p-16 max-w-2xl order-2 lg:order-1">
           <!-- Header -->
           <header class="mb-16">
             <a href="#top" class="block mb-4 group">
@@ -147,9 +147,9 @@ const experience = [
 
         </div>
 
-        <!-- Right Image (now visible on all screens, responsive size) -->
-        <div class="flex justify-center items-center mb-8 lg:mb-0 lg:block flex-1 relative">
-          <div class="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-2/3 lg:h-2/3 flex items-center justify-center">
+        <!-- Right Image: visible and centered on mobile, right on desktop -->
+        <div class="flex justify-center items-center mb-8 lg:mb-0 flex-1 relative order-1 lg:order-2">
+          <div class="w-40 h-40 sm:w-56 sm:h-56 lg:w-2/3 lg:h-2/3 flex items-center justify-center">
             <img
               src="/image.jpeg"
               alt="Bharghav Srinivasan"
