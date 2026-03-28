@@ -3,27 +3,39 @@ import Layout from '../layouts/Layout.astro';
 
 const projects = [
   {
-    title: "Moosic AI – Mood-Based Music Recommendation",
+    title: "SaveMyNode – Inode Recovery Tool for UNIX Systems",
     description:
-      "A web app that recommends Spotify playlists based on your mood, powered by Gemini AI.",
-    tech: ["Next.js", "Flask", "Gemini API", "Spotify API"],
-    link: "https://github.com/BharZInstein/Moosic-AI",
+      "A recovery tool for BTRFS and XFS file systems that restores corrupted or deleted inodes with 92% accuracy.",
+    tech: ["C", "Python", "BTRFS", "XFS", "Linux"],
+    link: "https://github.com/BharZInstein",
     details: [
-      "Used Gemini API to analyze user input and detect mood",
-      "Mapped moods to curated playlists via the Spotify API",
-      "Built a clean UI in Next.js and Flask for the backend"
+      "Parsed superblocks and inode tables for low-level data reconstruction",
+      "Restored corrupted/deleted inodes on BTRFS and XFS file systems with 92% accuracy",
+      "Selected for Smart India Hackathon 2024 National Round"
+    ]
+  },
+  {
+    title: "Fluz Pay – Transaction Management Service",
+    description:
+      "A backend service for secure transaction management with JWT authentication and full audit logging.",
+    tech: ["FastAPI", "PostgreSQL", "Docker", "JWT"],
+    link: "https://github.com/BharZInstein",
+    details: [
+      "Designed a FastAPI backend with JWT authentication and transaction logging",
+      "Containerized the application with Docker for consistent deployment",
+      "Implemented RESTful APIs with role-based access control"
     ]
   },
   {
     title: "CV Powered Motion Controller – Hands-Free Gaming",
     description:
-      "A motion-controlled system that lets you play games using body gestures instead of a keyboard.",
+      "A motion-controlled system that lets you play games using body gestures instead of a keyboard — running at 30 FPS in real-time.",
     tech: ["Python", "OpenCV", "MediaPipe"],
     link: "https://github.com/BharZInstein/CV-Powered-Motion-Controller",
     details: [
-      "Tracked real-time body motion and mapped gestures to inputs",
-      "Aimed at making games more accessible and immersive",
-      "Built using OpenCV and MediaPipe for fast pose detection"
+      "Built a computer-vision gesture recognition pipeline using OpenCV and MediaPipe at 30 FPS",
+      "Mapped gestures to keyboard inputs for application and game control",
+      "Aimed at making games more accessible and immersive"
     ]
   },
   {
@@ -35,47 +47,65 @@ const projects = [
     details: [
       "Verified user creditworthiness without exposing sensitive data",
       "Leveraged ZKPs for privacy and SBTs for on-chain identity",
-      "Designed for fairer, more inclusive decentralized lending"
+      "Won 1st place at DeFy'25 Hackathon among 350+ participants"
     ]
   },
 ];
 
 const experience = [
   {
-    period: "June 2025 – Present",
+    period: "Jun 2025 – Aug 2025",
     role: "Software Engineering Intern",
     company: "OrangePeople",
     companyUrl: "https://op.tech/",
     details: [
-      "Built an AI-powered tool that converts natural language prompts into architecture diagrams (sequence/flow)",
-      "Designed REST APIs with FastAPI and integrated ML models for prompt interpretation and diagram generation",
-      "Collaborated remotely across teams, managing internal dashboards and project data pipelines"
+      "Developed and evaluated an NLP-based ML model converting natural-language queries into structured architecture diagrams (85% accuracy)",
+      "Worked on data preprocessing, feature extraction, and error analysis in Python",
+      "Integrated ML models into FastAPI services and deployed them on AWS"
     ]
   },
   {
-    period: "May 2024 – Present",
-    role: "Technical Lead",
-    company: "CyberSecurity Student Community, VITC",
+    period: "May 2025 – Present",
+    role: "Vice Chairperson",
+    company: "CyberSecurity Student Community (CYSCOM), VITC",
     companyUrl: "https://www.linkedin.com/company/cyscomvit/posts/?feedView=all",
     details: [
-      "Led a 200+ member community by organizing hands-on cybersecurity workshops and technical sessions",
-      "Mentored junior members and coordinated multiple technical events and CTFs"
+      "Manages a 200+ member community, organizes workshops/CTFs, and mentors junior members",
+      "Coordinates technical sessions and cybersecurity awareness events across campus"
     ]
   },
   {
-    period: "Nov 2023 – Present",
-    role: "Technical Team Member",
-    company: "IEEE Computer Society, VITC",
+    period: "2023 – Present",
+    role: "Open Source Contributor",
+    company: "Zen Browser & IEEE Computer Society, VITC",
     companyUrl: "https://ieeecsvitc.com/",
     details: [
-      "Developed CV-powered motion-controlled games for college tech events",
+      "Contributed features, bug fixes, and tests to Zen Browser",
+      "Built event-registration CLI and note-sharing tools at IEEE VITC for 500+ students",
       "Co-led HACKHUB, a flagship GitHub-sponsored hackathon with 350+ participants"
     ]
   },
 ];
+
+const education = [
+  {
+    institution: "Vellore Institute of Technology, Chennai",
+    degree: "Bachelors in Technology (B.Tech)",
+    period: "2023 – 2027",
+  },
+  {
+    institution: "Indian Institute of Technology, Madras",
+    degree: "Bachelor of Science in Data Science",
+    period: "2023 – Present",
+    coursework: "Data Structures & Algorithms, Operating Systems, Database Management Systems"
+  },
+];
+
+
+
 ---
 
-<Layout title="Bharghav Srinivasan">
+<Layout title="Bharghav Srinivasan – Engineer & Developer" description="Personal portfolio of Bharghav Srinivasan – software engineer, open source contributor, and ML enthusiast from VIT Chennai & IIT Madras.">
     <div class="min-h-screen bg-black text-white w-full">
       <!-- Main Layout -->
       <div class="flex flex-col lg:flex-row min-h-screen">
@@ -88,21 +118,22 @@ const experience = [
                 Bharghav Srinivasan
               </h1>
             </a>
-            <p class="text-gray-400 text-base font-mono">Engineer • Developer • Builder</p>
+            <p class="text-gray-400 text-base font-mono">Engineer · Developer · Builder</p>
           </header>
 
           <!-- Navigation -->
           <nav class="mb-16">
-            <div class="flex gap-8 text-lg">
+            <div class="flex flex-wrap gap-6 text-lg">
               <a href="#about" class="hover:text-amber-400 transition-colors border-b border-gray-600">
                 who am i
-              </a>
-              <a href="#projects" class="hover:text-amber-400 transition-colors">
-                projects
               </a>
               <a href="#experience" class="hover:text-amber-400 transition-colors">
                 experience
               </a>
+              <a href="#projects" class="hover:text-amber-400 transition-colors">
+                projects
+              </a>
+
             </div>
           </nav>
 
@@ -128,7 +159,7 @@ const experience = [
           <!-- Contact Links -->
           <div class="mb-12">
             <p class="text-gray-400 mb-4">Let's talk —</p>
-            <div class="flex gap-6 text-amber-400">
+            <div class="flex flex-wrap gap-6 text-amber-400">
               <a href="mailto:bharghav7676@gmail.com" class="hover:text-white transition-colors">
                 Email
               </a>
@@ -143,8 +174,6 @@ const experience = [
               </a>
             </div>
           </div>
-
-
         </div>
 
         <!-- Right Image: visible and centered on mobile, right on desktop -->
@@ -159,10 +188,56 @@ const experience = [
         </div>
       </div>
 
+      <!-- Education Section -->
+      <section class="px-8 lg:px-16 py-16 max-w-6xl border-t border-gray-900">
+        <h2 class="text-2xl lg:text-3xl font-bold font-serif mb-10 text-gray-300">Education</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {education.map((edu) => (
+            <div class="border border-gray-800 rounded-lg p-6 hover:border-amber-400 transition-colors">
+              <p class="text-amber-400 text-sm font-mono mb-2">{edu.period}</p>
+              <h3 class="text-lg font-semibold font-serif mb-1">{edu.institution}</h3>
+              <p class="text-gray-400 text-sm mb-2">{edu.degree}</p>
+              {edu.coursework && (
+                <p class="text-gray-600 text-xs">Coursework: {edu.coursework}</p>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Experience Section -->
+      <section id="experience" class="px-8 lg:px-16 py-20 max-w-6xl">
+        <h2 class="text-3xl lg:text-4xl font-bold font-serif mb-4">Experience</h2>
+        <p class="text-gray-400 mb-16 text-lg">My professional journey</p>
+
+        <div class="space-y-12">
+          {experience.map((job) => (
+            <div class="border-l-2 border-gray-800 pl-8 hover:border-amber-400 transition-colors">
+              <div class="flex flex-wrap justify-between items-start mb-2 gap-2">
+                <div>
+                  <h3 class="text-xl font-semibold font-serif">{job.role}</h3>
+                  <a href={job.companyUrl} target="_blank" rel="noopener noreferrer" class="text-amber-400 font-medium hover:text-white transition-colors">
+                    {job.company}
+                  </a>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-gray-500 text-sm">{job.period}</span>
+                </div>
+              </div>
+              <div class="mb-4">
+                {job.details.map((detail) => (
+                  <p class="text-gray-400 text-sm mb-1">– {detail}</p>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <!-- Projects Section -->
       <section id="projects" class="px-8 lg:px-16 py-20 max-w-6xl">
         <h2 class="text-3xl lg:text-4xl font-bold font-serif mb-4">Projects</h2>
-        <p class="text-gray-400 mb-16 text-lg">Some cool things I've built recently</p>
+        <p class="text-gray-400 mb-16 text-lg">Some things I've built</p>
 
         <div class="space-y-12">
           {projects.map((project) => (
@@ -214,34 +289,7 @@ const experience = [
         </div>
       </section>
 
-      <!-- Experience Section -->
-      <section id="experience" class="px-8 lg:px-16 py-20 max-w-6xl">
-        <h2 class="text-3xl lg:text-4xl font-bold font-serif mb-4">Experience</h2>
-        <p class="text-gray-400 mb-16 text-lg">My professional journey</p>
 
-        <div class="space-y-12">
-          {experience.map((job) => (
-            <div class="border-l-2 border-gray-800 pl-8 hover:border-amber-400 transition-colors">
-              <div class="flex justify-between items-start mb-2">
-                <div>
-                  <h3 class="text-xl font-semibold font-serif">{job.role}</h3>
-                  <a href={job.companyUrl} target="_blank" rel="noopener noreferrer" class="text-amber-400 font-medium hover:text-white transition-colors">
-                    {job.company}
-                  </a>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="text-gray-500 text-sm">{job.period}</span>
-                </div>
-              </div>
-              <div class="mb-4">
-                {job.details.map((detail) => (
-                  <p class="text-gray-400 text-sm mb-1">– {detail}</p>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       <!-- Footer -->
       <footer class="px-8 lg:px-16 py-12 border-t border-gray-800">
@@ -270,4 +318,4 @@ const experience = [
         </div>
       </footer>
     </div>
-</Layout> 
+</Layout>
