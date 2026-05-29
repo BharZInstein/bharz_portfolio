@@ -1,0 +1,180 @@
+---
+// Standalone docx/xlsx viewer comparison page — public test harness.
+// Loads candidate libraries from CDN; renders the SAME source file
+// multiple ways for side-by-side comparison.
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>docx / xlsx viewer comparison</title>
+  <style>
+    * { box-sizing: border-box }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d1117; color: #e6edf3; padding: 20px }
+    h1 { font-size: 18px; margin: 0 0 6px 0 }
+    p.lede { font-size: 12px; color: #8b949e; margin: 0 0 20px 0 }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px }
+    .card { border: 1px solid #30363d; border-radius: 8px; background: #0d1117; overflow: hidden }
+    .card h3 { margin: 0; padding: 8px 12px; font-size: 13px; background: #161b22; border-bottom: 1px solid #30363d; display: flex; justify-content: space-between; align-items: center; color: #e6edf3 }
+    .card h3 small { font-weight: normal; color: #8b949e; font-size: 11px }
+    .pane { height: 480px; overflow: auto; background: #fff; color: #000 }
+    .pane.padded { padding: 16px }
+    select { background: #161b22; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; padding: 4px 8px; font-size: 12px }
+    .controls { display: flex; align-items: center; gap: 12px; margin-bottom: 12px }
+    a.raw { color: #58a6ff; font-size: 11px; text-decoration: none }
+    a.raw:hover { text-decoration: underline }
+    iframe { width: 100%; height: 100%; border: 0; background: #fff }
+    .err { color: #c33; padding: 16px; font-family: monospace; font-size: 12px }
+    table { border-collapse: collapse; font-size: 12px }
+    table td, table th { border: 1px solid #ddd; padding: 4px 8px }
+    table th { background: #f5f5f5 }
+    h2.section { font-size: 14px; color: #c9d1d9; margin: 24px 0 10px 0; border-bottom: 1px solid #30363d; padding-bottom: 6px }
+  </style>
+</head>
+<body>
+  <h1>DOCX + XLSX preview — head-to-head</h1>
+  <p class="lede">Same source file rendered multiple ways. Look at each pane: does it render at all? Is the structure readable? Pick the winner.</p>
+
+  <h2 class="section">DOCX</h2>
+  <div class="controls">
+    <span style="font-size:12px">DOCX file:</span>
+    <select id="docx-file"></select>
+    <a class="raw" id="docx-raw" target="_blank" rel="noopener noreferrer">open raw</a>
+  </div>
+
+  <div class="row">
+    <div class="card">
+      <h3>A. docx-preview <small>client-side · ~500 KB · high fidelity</small></h3>
+      <div class="pane padded" id="pane-docx-preview">Loading…</div>
+    </div>
+    <div class="card">
+      <h3>B. mammoth.js <small>client-side · ~250 KB · docx → HTML</small></h3>
+      <div class="pane padded" id="pane-mammoth" style="font-family: serif; line-height: 1.5">Loading…</div>
+    </div>
+    <div class="card">
+      <h3>C. Microsoft Office Online <small>iframe · Microsoft-hosted</small></h3>
+      <div class="pane"><iframe id="iframe-office-docx" src="about:blank" title="office-docx"></iframe></div>
+    </div>
+    <div class="card">
+      <h3>D. Google Docs viewer <small>iframe · what prod currently uses</small></h3>
+      <div class="pane"><iframe id="iframe-google-docx" src="about:blank" title="google-docx"></iframe></div>
+    </div>
+  </div>
+
+  <h2 class="section">XLSX</h2>
+  <div class="controls">
+    <span style="font-size:12px">XLSX file:</span>
+    <select id="xlsx-file"></select>
+    <a class="raw" id="xlsx-raw" target="_blank" rel="noopener noreferrer">open raw</a>
+  </div>
+
+  <div class="row">
+    <div class="card">
+      <h3>E. SheetJS (xlsx) <small>client-side · table-render per sheet</small></h3>
+      <div class="pane padded" id="pane-sheetjs">Loading…</div>
+    </div>
+    <div class="card">
+      <h3>F. Microsoft Office Online <small>iframe · Excel Online preview</small></h3>
+      <div class="pane"><iframe id="iframe-office-xlsx" src="about:blank" title="office-xlsx"></iframe></div>
+    </div>
+  </div>
+
+  <!-- Libraries loaded from public CDN; no build step needed. -->
+  <script is:inline src="https://unpkg.com/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script is:inline src="https://unpkg.com/docx-preview@0.3.7/dist/docx-preview.js"></script>
+  <script is:inline src="https://unpkg.com/mammoth@1.7.0/mammoth.browser.min.js"></script>
+  <script is:inline src="https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+  <script is:inline>
+    const S3 = "https://pw-public-samples.s3.us-east-1.amazonaws.com";
+    const DOCX_SAMPLES = [
+      { label: "Summit Hospital agreement", url: S3 + "/jobbench/cardinal-ma-due-diligence/task/environment/data/customer_agreement_summit_regional_hospital.docx" },
+      { label: "Hartwell management notes", url: S3 + "/jobbench/hartwell-financial-audit/task/environment/data/management_notes_q4.docx" },
+      { label: "Riverside lease (worst case)", url: S3 + "/jobbench/cardinal-ma-due-diligence/task/environment/data/lease_agreement_riverside_facility.docx" }
+    ];
+    const XLSX_SAMPLES = [
+      { label: "Hartwell balance sheet", url: S3 + "/jobbench/hartwell-financial-audit/task/environment/data/balance_sheet_q4_2025.xlsx" },
+      { label: "Procurement scoring criteria", url: S3 + "/jobbench/procurement-vendor-evaluation/task/environment/data/vendor_scoring_criteria.xlsx" },
+      { label: "Hartwell AR aging", url: S3 + "/jobbench/hartwell-financial-audit/task/environment/data/accounts_receivable_aging.xlsx" }
+    ];
+
+    const $ = (id) => document.getElementById(id);
+    function populate(sel, items) {
+      sel.innerHTML = items.map((s, i) => '<option value="' + i + '">' + s.label + '</option>').join("");
+    }
+
+    async function renderDocxPreview(url) {
+      const p = $("pane-docx-preview");
+      p.innerHTML = '<div style="color:#777">Loading…</div>';
+      try {
+        const r = await fetch(url);
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        const buf = await r.arrayBuffer();
+        p.innerHTML = "";
+        await window.docx.renderAsync(buf, p, undefined, { className: "docx", inWrapper: true, breakPages: false });
+      } catch (e) {
+        p.innerHTML = '<div class="err">Failed: ' + (e.message || e) + '</div>';
+      }
+    }
+
+    async function renderMammoth(url) {
+      const p = $("pane-mammoth");
+      p.innerHTML = '<div style="color:#777">Loading…</div>';
+      try {
+        const r = await fetch(url);
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        const buf = await r.arrayBuffer();
+        const res = await window.mammoth.convertToHtml({ arrayBuffer: buf });
+        p.innerHTML = res.value || "(empty)";
+      } catch (e) {
+        p.innerHTML = '<div class="err">Failed: ' + (e.message || e) + '</div>';
+      }
+    }
+
+    async function renderSheetJS(url) {
+      const p = $("pane-sheetjs");
+      p.innerHTML = '<div style="color:#777">Loading…</div>';
+      try {
+        const r = await fetch(url);
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        const buf = await r.arrayBuffer();
+        const wb = XLSX.read(buf, { type: "array" });
+        const parts = [];
+        for (const n of wb.SheetNames) {
+          parts.push('<h3 style="margin:14px 0 6px 0;font-size:13px;font-weight:bold">' + n + '</h3>');
+          parts.push(XLSX.utils.sheet_to_html(wb.Sheets[n], { editable: false }));
+        }
+        p.innerHTML = parts.join("");
+      } catch (e) {
+        p.innerHTML = '<div class="err">Failed: ' + (e.message || e) + '</div>';
+      }
+    }
+
+    function applyDocx() {
+      const i = parseInt($("docx-file").value, 10);
+      const u = DOCX_SAMPLES[i].url;
+      $("docx-raw").href = u;
+      renderDocxPreview(u);
+      renderMammoth(u);
+      $("iframe-office-docx").src = "https://view.officeapps.live.com/op/view.aspx?src=" + encodeURIComponent(u);
+      $("iframe-google-docx").src = "https://docs.google.com/viewer?url=" + encodeURIComponent(u) + "&embedded=true";
+    }
+
+    function applyXlsx() {
+      const i = parseInt($("xlsx-file").value, 10);
+      const u = XLSX_SAMPLES[i].url;
+      $("xlsx-raw").href = u;
+      renderSheetJS(u);
+      $("iframe-office-xlsx").src = "https://view.officeapps.live.com/op/view.aspx?src=" + encodeURIComponent(u);
+    }
+
+    populate($("docx-file"), DOCX_SAMPLES);
+    populate($("xlsx-file"), XLSX_SAMPLES);
+    $("docx-file").addEventListener("change", applyDocx);
+    $("xlsx-file").addEventListener("change", applyXlsx);
+    applyDocx();
+    applyXlsx();
+  </script>
+</body>
+</html>
